@@ -1,0 +1,9 @@
+{% extends 'template.html' %} {% block content %}
+<div class="formwrapper">
+    <h2 class="title">Contact</h2>
+    <form method="POST" action="/">
+        <div class="form-field">{{ form.url.label }} {{ form.url(size=20) }}</div>
+        {{ form.submit }}
+    </form>
+</div>
+{% endblock %}
