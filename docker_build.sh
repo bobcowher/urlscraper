@@ -1,2 +1,2 @@
-#docker build -t interactive:1.0
-#docker run --publish 
+docker build -t urlscraper:1.0 .
+docker run urlscraper:1.0
