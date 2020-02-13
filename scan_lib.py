@@ -23,12 +23,12 @@ def getTextPurpose(text):
         if token in stopwords.words('english'):
             
             clean_tokens.remove(token)
+    freq = nltk.FreqDist(clean_tokens)
 
-    # for key,val in freq.items():
-    #     print(str(key) + ':' + str(val))
-    fig = plt.figure(figsize = (10,4))
-    plt.gcf().subplots_adjust(bottom=0.15) # to avoid x-ticks cut-off
-    fdist = nltk.FreqDist(clean_tokens)
-    fdist.plot(10, cumulative=False)
-    plt.show()
-    fig.savefig('plot.png', bbox_inches = "tight")
+    return freq
+    
+    # plt.gcf().subplots_adjust(bottom=0.15) # to avoid x-ticks cut-off
+    # fdist = nltk.FreqDist(clean_tokens)
+    # fdist.plot(10, cumulative=False)
+    # fig = plt.figure(figsize = (10,4))
+    # fig.savefig('plot.png', bbox_inches = "tight")

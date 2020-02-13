@@ -4,3 +4,4 @@ nltk
 bs4
 matplotlib
 lxml
+html5lib

@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask import Flask, url_for, render_template, redirect
 from flask_wtf import FlaskForm
+from flask import Flask,request
 from wtforms import StringField, TextField, SubmitField
 from wtforms.validators import DataRequired, Length
 from scan_lib import getUrl, getTextPurpose
@@ -23,21 +24,19 @@ class ScanForm(FlaskForm):
 
 @app.route('/', methods=('GET', 'POST'))
 def home():
-    getTextPurpose(getUrl("https://en.wikipedia.org/wiki/SpaceX"))
-
-    return render_template('home.html',)
+    return("Hello, I'm the url scraper. Go to /scan for something useful")
  
 @app.route('/scan', methods=('GET', 'POST'))
 def scan():
     form = ScanForm()
-    if form.validate_on_submit():
-        return render_template("home.html") #This really doesn't work for some reason.
     return render_template("scan.html", form=form)
 
 @app.route('/results', methods=('GET', 'POST'))
 def results():
-    return render_template("home.html")
-
+    freq = getTextPurpose(getUrl(request.form['url']))
+    
+    for key,val in freq.items():
+        return((str(key) + ':' + str(val)))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
